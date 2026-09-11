@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mantenimiento - Hotel Manager</title>
+    <meta name="description" content="Panel de control de reportes de fallas y tareas de mantenimiento del hotel.">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <header>
-        <h1>Hotel Manager</h1>
-
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="habitaciones.html">Habitaciones</a>
-            <a href="huespedes.html">Huéspedes</a>
-            <a href="reservas.html">Reservas</a>
-            <a href="mantenimiento.html">Mantenimiento</a>
+    <header class="header">
+        <div class="logo">HotelAdmin</div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="habitaciones.html">Habitaciones</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="huespedes.html">Huéspedes</a></li>
+                <li><a href="mantenimiento.html">Mantenimiento</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-
-        <section>
-            <h2>Mantenimiento</h2>
-
-            <article>
-                <h3>Habitación 103</h3>
-                <p>Problema: Aire acondicionado fuera de servicio.</p>
-                <p>Estado: En mantenimiento</p>
-            </article>
-
-            <article>
-                <h3>Habitación 202</h3>
-                <p>Problema: Reparación de baño.</p>
-                <p>Estado: En mantenimiento</p>
-            </article>
-
+    <main class="main-content">
+        <section class="hero">
+            <h1>Módulo de Mantenimiento</h1>
+            <p>Seguimiento de incidencias técnicas y reparaciones.</p>
         </section>
 
+        <section class="grid-modulos">
+            <article class="card">
+                <h2>Reportes Activos</h2>
+                <p>Incidencias reportadas en habitaciones o áreas comunes.</p>
+                <a href="#" class="btn">Ver Reportes</a>
+            </article>
+            <article class="card">
+                <h2>Tareas de Limpieza</h2>
+                <p>Cronograma de limpieza profunda y mantenimiento preventivo.</p>
+                <a href="#" class="btn">Ver Cronograma</a>
+            </article>
+        </section>
     </main>
 
-    <footer>
-        <p>Hotel Manager - Sistema de Gestión de Hotel</p>
+    <footer class="footer">
+        <p>&copy; 2026 HotelAdmin. Todos los derechos reservados.</p>
     </footer>
-
 </body>
-
 </html>

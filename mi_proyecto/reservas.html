@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas - Hotel Manager</title>
+    <title>Gestión de Reservas - Hotel Manager</title>
+    <meta name="description" content="Administre check-in, check-out y nuevas reservas de los clientes del hotel.">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <header>
-        <h1>Hotel Manager</h1>
-
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="habitaciones.html">Habitaciones</a>
-            <a href="huespedes.html">Huéspedes</a>
-            <a href="reservas.html">Reservas</a>
-            <a href="mantenimiento.html">Mantenimiento</a>
+    <header class="header">
+        <div class="logo">HotelAdmin</div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="habitaciones.html">Habitaciones</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="huespedes.html">Huéspedes</a></li>
+                <li><a href="mantenimiento.html">Mantenimiento</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-
-        <section>
-            <h2>Reservas</h2>
-
-            <article>
-                <h3>Reserva #00025</h3>
-                <p>Huésped: Juan Pérez</p>
-                <p>Habitación: 204 - Doble</p>
-                <p>Check-in: 15/09/2026</p>
-                <p>Check-out: 18/09/2026</p>
-                <p>Estado: Confirmada</p>
-            </article>
-
-            <article>
-                <h3>Reserva #00026</h3>
-                <p>Huésped: María Gómez</p>
-                <p>Habitación: 201 - Suite</p>
-                <p>Check-in: 20/09/2026</p>
-                <p>Check-out: 25/09/2026</p>
-                <p>Estado: Pendiente</p>
-            </article>
-
+    <main class="main-content">
+        <section class="hero">
+            <h1>Módulo de Reservas</h1>
+            <p>Gestión de ingresos, salidas y reservas activas.</p>
         </section>
 
+        <section class="grid-modulos">
+            <article class="card">
+                <h2>Nueva Reserva</h2>
+                <p>Cargar huésped, fechas y tipo de habitación.</p>
+                <a href="#" class="btn">Crear Reserva</a>
+            </article>
+            <article class="card">
+                <h2>Check-In / Check-Out</h2>
+                <p>Controlar ingresos y egresos del día.</p>
+                <a href="#" class="btn">Ver Listado</a>
+            </article>
+        </section>
     </main>
 
-    <footer>
-        <p>Hotel Manager - Sistema de Gestión de Hotel</p>
+    <footer class="footer">
+        <p>&copy; 2026 HotelAdmin. Todos los derechos reservados.</p>
     </footer>
-
 </body>
-
 </html>
