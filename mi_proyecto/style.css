@@ -1,0 +1,136 @@
+/* ================= VARIABLES ================= */
+:root {
+    --color-primario: #2c3e50;
+    --color-secundario: #3498db;
+    --color-fondo: #f4f7f6;
+    --color-texto: #333333;
+    --color-blanco: #ffffff;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --sombra-caja: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radio-borde: 8px;
+}
+
+/* ================= RESET Y BOX MODEL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Fundamental para que padding y border no sumen al ancho */
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* ================= FLEXBOX (Header y Nav) ================= */
+.header {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh; /* Uso de unidad vh */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.navbar a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--color-secundario);
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+    padding: 2rem 5%; /* Uso de porcentaje */
+    min-height: 80vh;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+}
+
+/* ================= CSS GRID (Tarjetas de Módulos) ================= */
+.grid-modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Uso de fr y auto-fit para responsive nativo */
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.card-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--radio-borde);
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 20px; /* Uso de px */
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    text-decoration: none;
+    border-radius: var(--radio-borde);
+}
+
+.footer {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 1rem;
+    height: 10vh;
+}
+
+/* ================= MEDIA QUERIES (Responsive Design) ================= */
+/* Para Tablets y Celulares */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
