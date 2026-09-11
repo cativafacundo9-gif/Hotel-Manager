@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <!-- Estrategia SEO 1: Diseño Responsive (Viewport) -> Google penaliza sitios que no son móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Manager</title>
+    
+    <!-- Estrategia SEO 2: Título descriptivo y relevante -->
+    <title>Sistema de Gestión Hotelera | Panel Principal</title>
+    
+    <!-- Estrategia SEO 3: Meta Description (Lo que aparece debajo del link en Google) -->
+    <meta name="description" content="Panel de administración integral para hoteles. Gestiona habitaciones, reservas, huéspedes y mantenimiento en un solo lugar.">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <header>
-        <h1>Hotel Manager</h1>
-
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="habitaciones.html">Habitaciones</a>
-            <a href="huespedes.html">Huéspedes</a>
-            <a href="reservas.html">Reservas</a>
-            <a href="mantenimiento.html">Mantenimiento</a>
+    <!-- Estrategia SEO 4: Uso de HTML5 Semántico (header, nav, main, section, footer) -> Ayuda a los bots a entender la estructura -->
+    <header class="header">
+        <div class="logo">HotelAdmin</div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="habitaciones.html">Habitaciones</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="huespedes.html">Huéspedes</a></li>
+                <li><a href="mantenimiento.html">Mantenimiento</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-
-        <section>
-            <h2>Bienvenido a Hotel Manager</h2>
-
-            <p>
-                Sistema de gestión para organizar las habitaciones,
-                huéspedes y reservas de un hotel.
-            </p>
+    <main class="main-content">
+        <!-- Estrategia SEO 5: Jerarquía de encabezados correcta (H1 único, seguido de H2) -->
+        <section class="hero">
+            <h1>Panel de Control del Hotel</h1>
+            <p>Bienvenido al sistema. Seleccione un módulo para comenzar.</p>
         </section>
 
+        <section class="grid-modulos">
+            <article class="card">
+                <!-- El atributo "alt" en las imágenes también es clave para el SEO -->
+                <img src="img/habitaciones.jpg" alt="Gestión de habitaciones" class="card-img">
+                <h2>Habitaciones</h2>
+                <p>Verifique el estado, limpieza y disponibilidad.</p>
+                <a href="habitaciones.html" class="btn">Ingresar</a>
+            </article>
+
+            <article class="card">
+                <img src="img/reservas.jpg" alt="Gestión de reservas" class="card-img">
+                <h2>Reservas</h2>
+                <p>Administre check-in, check-out y nuevas reservas.</p>
+                <a href="reservas.html" class="btn">Ingresar</a>
+            </article>
+
+            <article class="card">
+                <img src="img/huespedes.jpg" alt="Base de datos de huéspedes" class="card-img">
+                <h2>Huéspedes</h2>
+                <p>Base de datos e historial de clientes.</p>
+                <a href="huespedes.html" class="btn">Ingresar</a>
+            </article>
+
+            <article class="card">
+                <img src="img/mantenimiento.jpg" alt="Panel de mantenimiento" class="card-img">
+                <h2>Mantenimiento</h2>
+                <p>Reportes de fallas y tareas de limpieza.</p>
+                <a href="mantenimiento.html" class="btn">Ingresar</a>
+            </article>
+        </section>
     </main>
 
-    <footer>
-        <p>Hotel Manager - Sistema de Gestión de Hotel</p>
+    <footer class="footer">
+        <p>&copy; 2026 HotelAdmin. Todos los derechos reservados.</p>
     </footer>
-
 </body>
-
 </html>
