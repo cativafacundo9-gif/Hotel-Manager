@@ -1,4 +1,4 @@
-/* ================= VARIABLES ================= */
+/* 
 :root {
     --color-primario: #2c3e50;
     --color-secundario: #3498db;
@@ -10,11 +10,11 @@
     --radio-borde: 8px;
 }
 
-/* ================= RESET Y BOX MODEL ================= */
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Fundamental para que padding y border no sumen al ancho */
+    box-sizing: border-box; 
 }
 
 body {
@@ -24,7 +24,7 @@ body {
     line-height: 1.6;
 }
 
-/* ================= FLEXBOX (Header y Nav) ================= */
+
 .header {
     background-color: var(--color-primario);
     color: var(--color-blanco);
@@ -32,8 +32,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10vh; /* Uso de unidad vh */
-}
+    height: 10vh; 
 
 .logo {
     font-size: 1.5rem;
@@ -56,9 +55,9 @@ body {
     color: var(--color-secundario);
 }
 
-/* ================= MAIN CONTENT ================= */
+
 .main-content {
-    padding: 2rem 5%; /* Uso de porcentaje */
+    padding: 2rem 5%; 
     min-height: 80vh;
 }
 
@@ -72,10 +71,9 @@ body {
     color: var(--color-primario);
 }
 
-/* ================= CSS GRID (Tarjetas de Módulos) ================= */
-.grid-modulos {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Uso de fr y auto-fit para responsive nativo */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 2rem;
 }
 
@@ -99,7 +97,7 @@ body {
 .btn {
     display: inline-block;
     margin-top: 1rem;
-    padding: 10px 20px; /* Uso de px */
+    padding: 10px 20px; 
     background-color: var(--color-secundario);
     color: var(--color-blanco);
     text-decoration: none;
@@ -114,8 +112,7 @@ body {
     height: 10vh;
 }
 
-/* ================= MEDIA QUERIES (Responsive Design) ================= */
-/* Para Tablets y Celulares */
+
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -133,4 +130,4 @@ body {
     .hero h1 {
         font-size: 2rem;
     }
-}
+} */
