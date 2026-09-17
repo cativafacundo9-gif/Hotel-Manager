@@ -271,6 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return JSON.parse(almacenadas);
     };
 
+    // Función para eliminar una reserva
+    const eliminarReserva = (idReserva) => {
+        let reservas = obtenerReservas();
+        reservas = reservas.filter(reserva => reserva.id !== idReserva);
+        localStorage.setItem('reservas_hotel', JSON.stringify(reservas));
+        renderizarReservas();
+    };
+
     // Renderizar tarjetas de reservas en el DOM
     const renderizarReservas = () => {
         if (!contenedorReservas) return;
@@ -301,10 +309,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span><i class="bi bi-box-arrow-in-right"></i> ${reserva.ingreso}</span>
                             <span><i class="bi bi-box-arrow-right"></i> ${reserva.salida}</span>
                         </div>
+                        <!-- Botón de eliminar -->
+                        <button class="btn btn-outline-danger btn-sm mt-3 btn-eliminar" data-id="${reserva.id}">
+                            <i class="bi bi-trash3"></i> Eliminar
+                        </button>
                     </div>
                 </div>
             `;
             contenedorReservas.appendChild(col);
+        });
+
+        // Evento para activar los botones de eliminar
+        const botonesEliminar = document.querySelectorAll('.btn-eliminar');
+        botonesEliminar.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                // el closest asegura que tomemos el id incluso si hace click en el icono
+                const idParaBorrar = parseInt(e.target.closest('.btn-eliminar').getAttribute('data-id'));
+                eliminarReserva(idParaBorrar);
+            });
         });
     };
 
@@ -338,12 +360,21 @@ document.addEventListener('DOMContentLoaded', () => {
         formReserva.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // 1. Obtener valores del formulario
-            const nombre = document.getElementById('clienteNombre').value;
-            const habitacionSelect = document.getElementById('habitacionSelect');
-            const habitacionTexto = habitacionSelect.options[habitacionSelect.selectedIndex].text;
-            const fechaIngreso = document.getElementById('fechaIngreso').value;
-            const fechaSalida = document.getElementById('fechaSalida').value;
+            // 1. Obtener inputs de forma segura (Previene el error de "null")
+            const inputNombre = document.getElementById('clienteNombre');
+            const inputHabitacion = document.getElementById('habitacionSelect');
+            const inputIngreso = document.getElementById('fechaIngreso');
+            const inputSalida = document.getElementById('fechaSalida');
+
+            if (!inputNombre || !inputHabitacion || !inputIngreso || !inputSalida) {
+                console.error("Faltan inputs del formulario en el HTML");
+                return; 
+            }
+
+            const nombre = inputNombre.value;
+            const habitacionTexto = inputHabitacion.options[inputHabitacion.selectedIndex].text;
+            const fechaIngreso = inputIngreso.value;
+            const fechaSalida = inputSalida.value;
 
             // 2. Validación básica de fechas
             if (new Date(fechaSalida) <= new Date(fechaIngreso)) {
@@ -379,8 +410,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 7. Resetear formulario y cerrar panel
             formReserva.reset();
-            const collapseInstancia = bootstrap.Collapse.getInstance(seccionNuevaReserva);
-            if(collapseInstancia) collapseInstancia.hide();
+            if (typeof bootstrap !== 'undefined') {
+                const collapseInstancia = bootstrap.Collapse.getInstance(seccionNuevaReserva);
+                if(collapseInstancia) collapseInstancia.hide();
+            }
         });
     }
 
