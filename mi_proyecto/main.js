@@ -22,7 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
-       2. FUNCIONALIDAD: FILTRO DE HABITACIONES (habitaciones.html)
+       2. FUNCIONALIDAD: RELOJ EN TIEMPO REAL (index.html)
+       ========================================== */
+    const relojElement = document.getElementById('reloj-digital');
+
+    if (relojElement) {
+        const actualizarReloj = () => {
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+            
+            relojElement.textContent = `${horas}:${minutos}:${segundos}`;
+        };
+
+        // Ejecución inicial inmediata para evitar el retraso de 1 segundo
+        actualizarReloj();
+        // Actualización contínua cada 1 segundo (1000ms)
+        setInterval(actualizarReloj, 1000);
+    }
+
+    /* ==========================================
+       3. FUNCIONALIDAD: FILTRO DE HABITACIONES (habitaciones.html)
        ========================================== */
     const botonesFiltro = document.querySelectorAll('.btn-filtro');
     const tarjetasHabitacion = document.querySelectorAll('.tarjeta-habitacion');
