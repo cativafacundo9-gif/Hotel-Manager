@@ -79,4 +79,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    /* ==========================================
+       4. FUNCIONALIDAD: BUSCADOR EN TIEMPO REAL Y DESPLEGABLE (huespedes.html)
+       ========================================== */
+    const inputBuscador = document.getElementById('buscador-huespedes');
+    const tarjetasHuesped = document.querySelectorAll('.tarjeta-huesped');
+    const seccionDirectorio = document.getElementById('seccion-directorio');
+    const btnDirectorio = document.querySelector('[data-bs-target="#seccion-directorio"]');
+
+    // Buscador en tiempo real
+    if (inputBuscador) {
+        inputBuscador.addEventListener('keyup', (e) => {
+            const textoBusqueda = e.target.value.toLowerCase();
+
+            tarjetasHuesped.forEach(tarjeta => {
+                const nombreHuesped = tarjeta.querySelector('.nombre-huesped').textContent.toLowerCase();
+
+                if (nombreHuesped.includes(textoBusqueda)) {
+                    tarjeta.style.display = 'block';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Cambio dinámico del texto del botón (Ver / Ocultar)
+    if (seccionDirectorio && btnDirectorio) {
+        seccionDirectorio.addEventListener('shown.bs.collapse', () => {
+            btnDirectorio.textContent = 'Ocultar Directorio';
+        });
+
+        seccionDirectorio.addEventListener('hidden.bs.collapse', () => {
+            btnDirectorio.textContent = 'Ver Directorio';
+        });
+    }
 });
