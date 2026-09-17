@@ -57,7 +57,9 @@
                     <div class="card-body p-4 d-flex flex-column">
                         <h2 class="h5 fw-bold text-dark mb-3">Nueva Reserva</h2>
                         <p class="card-text text-muted small mb-4">Cargar huésped, fechas y tipo de habitación.</p>
-                        <a href="#" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Crear Reserva</a>
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-nueva-reserva" aria-expanded="false" aria-controls="seccion-nueva-reserva">
+                            Crear Reserva
+                        </button>
                     </div>
                 </div>
             </article>
@@ -68,12 +70,75 @@
                     <div class="card-body p-4 d-flex flex-column">
                         <h2 class="h5 fw-bold text-dark mb-3">Check-In / Check-Out</h2>
                         <p class="card-text text-muted small mb-4">Controlar ingresos y egresos del día.</p>
-                        <a href="#" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Ver Listado</a>
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-listado-reservas" aria-expanded="false" aria-controls="seccion-listado-reservas">
+                            Ver Listado
+                        </button>
                     </div>
                 </div>
             </article>
 
         </section>
+
+        <!-- Apartado Desplegable: Formulario Nueva Reserva -->
+        <section id="seccion-nueva-reserva" class="collapse mt-5 pt-4 border-top">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card border-0 shadow-sm bg-white p-4 rounded-3">
+                        <h3 class="h4 fw-bold text-dark mb-3 text-center">Registrar Nueva Reserva</h3>
+                        
+                        <!-- Contenedor de Alerta de Éxito / Error -->
+                        <div id="alerta-reserva" class="alert alert-success d-none mb-3" role="alert">
+                            Reserva simulada con éxito.
+                        </div>
+
+                        <form id="form-reserva">
+                            <div class="mb-3">
+                                <label for="nombre-huesped" class="form-label fw-semibold small text-dark">Nombre Completo del Huésped</label>
+                                <input type="text" class="form-control" id="nombre-huesped" placeholder="Ej: Carlos Tevez">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tipo-habitacion" class="form-label fw-semibold small text-dark">Tipo de Habitación</label>
+                                <select class="form-select" id="tipo-habitacion">
+                                    <option value="" selected disabled>Seleccionar habitación...</option>
+                                    <option value="101 - Individual Standard">101 - Individual Standard</option>
+                                    <option value="102 - Suite Presidencial">102 - Suite Presidencial</option>
+                                    <option value="204 - Doble Superior">204 - Doble Superior</option>
+                                    <option value="301 - Deluxe Vista al Mar">301 - Deluxe Vista al Mar</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-2 mb-4">
+                                <div class="col-6">
+                                    <label for="fecha-ingreso" class="form-label fw-semibold small text-dark">Fecha Check-In</label>
+                                    <input type="date" class="form-control" id="fecha-ingreso">
+                                </div>
+                                <div class="col-6">
+                                    <label for="fecha-salida" class="form-label fw-semibold small text-dark">Fecha Check-Out</label>
+                                    <input type="date" class="form-control" id="fecha-salida">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark w-100 fw-semibold">Guardar Reserva</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Apartado Desplegable: Listado de Reservas (CRUD) -->
+        <section id="seccion-listado-reservas" class="collapse mt-5 pt-4 border-top">
+            <div class="mb-4 text-center text-md-start">
+                <h3 class="h4 fw-bold text-dark mb-1">Listado de Reservas Activas</h3>
+                <p class="text-muted small">Administre ingresos, salidas y cancelaciones registradas en el sistema.</p>
+            </div>
+
+            <!-- Contenedor dinámico cargado con JS -->
+            <div id="contenedor-reservas" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                <!-- Se puebla dinámicamente desde main.js con localStorage -->
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer Corporativo -->
@@ -85,5 +150,8 @@
 
     <!-- Script de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- Script Principal JS -->
+    <script src="main.js"></script>
 </body>
 </html>

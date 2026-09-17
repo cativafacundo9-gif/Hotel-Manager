@@ -210,4 +210,170 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    /* ==========================================
+       6. FUNCIONALIDAD: MÓDULO RESERVAS (reservas.html)
+       ========================================== */
+    const seccionNuevaReserva = document.getElementById('seccion-nueva-reserva');
+    const btnNuevaReserva = document.querySelector('[data-bs-target="#seccion-nueva-reserva"]');
+    const seccionListadoReservas = document.getElementById('seccion-listado-reservas');
+    const btnListadoReservas = document.querySelector('[data-bs-target="#seccion-listado-reservas"]');
+    const formReserva = document.getElementById('form-reserva');
+    const alertaReserva = document.getElementById('alerta-reserva');
+    const contenedorReservas = document.getElementById('contenedor-reservas');
+
+    // Datos iniciales de prueba si no existen reservas guardadas
+    const reservasIniciales = [
+        {
+            id: 1,
+            nombre: 'Juan Pérez',
+            habitacion: '102 - Suite Presidencial',
+            ingreso: '2026-09-20',
+            salida: '2026-09-25',
+            estado: 'Confirmada'
+        },
+        {
+            id: 2,
+            nombre: 'María Gómez',
+            habitacion: '204 - Doble Superior',
+            ingreso: '2026-09-22',
+            salida: '2026-09-28',
+            estado: 'Check-In'
+        }
+    ];
+
+    // Obtener reservas de localStorage o inicializar
+    const obtenerReservas = () => {
+        const almacenadas = localStorage.getItem('reservas_hotel');
+        if (!almacenadas) {
+            localStorage.setItem('reservas_hotel', JSON.stringify(reservasIniciales));
+            return reservasIniciales;
+        }
+        return JSON.parse(almacenadas);
+    };
+
+    // Renderizar tarjetas de reservas en el DOM
+    const renderizarReservas = () => {
+        if (!contenedorReservas) return;
+
+        const reservas = obtenerReservas();
+        contenedorReservas.innerHTML = '';
+
+        if (reservas.length === 0) {
+            contenedorReservas.innerHTML = `
+                <div class="col-12 text-center py-4">
+                    <p class="text-muted mb-0">No hay reservas registradas actualmente.</p>
+                </div>`;
+            return;
+        }
+
+        reservas.forEach(reserva => {
+            const col = document.createElement('article');
+            col.className = 'col';
+            col.innerHTML = `
+                <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h4 class="h6 fw-bold text-dark mb-0">${reserva.nombre}</h4>
+                            <span class="badge ${reserva.estado === 'Check-In' ? 'bg-success' : 'bg-primary'}">${reserva.estado}</span>
+                        </div>
+                        <p class="card-text text-muted small mb-1"><strong>Habitación:</strong> ${reserva.habitacion}</p>
+                        <p class="card-text text-muted small mb-1"><strong>Ingreso:</strong> ${reserva.ingreso}</p>
+                        <p class="card-text text-muted small mb-3"><strong>Salida:</strong> ${reserva.salida}</p>
+                        <button class="btn btn-sm btn-outline-danger btn-eliminar-reserva w-100 mt-auto fw-semibold" data-id="${reserva.id}">
+                            Cancelar Reserva
+                        </button>
+                    </div>
+                </div>`;
+            contenedorReservas.appendChild(col);
+        });
+
+        // Eventos para eliminar reserva
+        const botonesEliminar = contenedorReservas.querySelectorAll('.btn-eliminar-reserva');
+        botonesEliminar.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idEliminar = Number(e.target.getAttribute('data-id'));
+                const reservasActuales = obtenerReservas();
+                const reservasFiltradas = reservasActuales.filter(r => r.id !== idEliminar);
+                localStorage.setItem('reservas_hotel', JSON.stringify(reservasFiltradas));
+                renderizarReservas();
+            });
+        });
+    };
+
+    // Alternar texto del botón (Crear Reserva / Ocultar Formulario)
+    if (seccionNuevaReserva && btnNuevaReserva) {
+        seccionNuevaReserva.addEventListener('shown.bs.collapse', () => {
+            btnNuevaReserva.textContent = 'Ocultar Formulario';
+        });
+
+        seccionNuevaReserva.addEventListener('hidden.bs.collapse', () => {
+            btnNuevaReserva.textContent = 'Crear Reserva';
+        });
+    }
+
+    // Alternar texto del botón (Ver Listado / Ocultar Listado)
+    if (seccionListadoReservas && btnListadoReservas) {
+        seccionListadoReservas.addEventListener('shown.bs.collapse', () => {
+            btnListadoReservas.textContent = 'Ocultar Listado';
+            renderizarReservas();
+        });
+
+        seccionListadoReservas.addEventListener('hidden.bs.collapse', () => {
+            btnListadoReservas.textContent = 'Ver Listado';
+        });
+    }
+
+    // Validación y guardado del formulario
+    if (formReserva) {
+        formReserva.addEventListener('submit', (e) => {
+            e.preventDefault(); // Intercepta el envío del formulario
+
+            const nombre = document.getElementById('nombre-huesped').value.trim();
+            const habitacion = document.getElementById('tipo-habitacion').value;
+            const ingreso = document.getElementById('fecha-ingreso').value;
+            const salida = document.getElementById('fecha-salida').value;
+
+            // Validación: Verificar que ningún campo esté vacío
+            if (!nombre || !habitacion || !ingreso || !salida) {
+                if (alertaReserva) {
+                    alertaReserva.className = 'alert alert-danger mb-3';
+                    alertaReserva.textContent = 'Por favor, complete todos los campos obligatorios.';
+                }
+                return;
+            }
+
+            // Crear objeto de reserva
+            const nuevaReserva = {
+                id: Date.now(),
+                nombre: nombre,
+                habitacion: habitacion,
+                ingreso: ingreso,
+                salida: salida,
+                estado: 'Confirmada'
+            };
+
+            // Guardar en localStorage
+            const reservas = obtenerReservas();
+            reservas.push(nuevaReserva);
+            localStorage.setItem('reservas_hotel', JSON.stringify(reservas));
+
+            // Mostrar mensaje de éxito
+            if (alertaReserva) {
+                alertaReserva.className = 'alert alert-success mb-3';
+                alertaReserva.textContent = 'Reserva simulada con éxito.';
+            }
+
+            // Resetear formulario
+            formReserva.reset();
+
+            // Actualizar el listado si está visible
+            renderizarReservas();
+        });
+    }
+
+    // Renderizado inicial al cargar la página si la sección está presente
+    if (contenedorReservas) {
+        renderizarReservas();
+    }
 });
