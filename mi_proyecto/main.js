@@ -43,40 +43,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================
-       3. FUNCIONALIDAD: FILTRO DE HABITACIONES (habitaciones.html)
+       3. FUNCIONALIDAD: FILTRO Y DETALLES DE HABITACIONES (habitaciones.html)
        ========================================== */
     const botonesFiltro = document.querySelectorAll('.btn-filtro');
     const tarjetasHabitacion = document.querySelectorAll('.tarjeta-habitacion');
+    const botonesDetallesHab = document.querySelectorAll('.btn-detalles');
 
+    // A) Lógica de filtrado de estado (Disponibles / Ocupadas)
     if (botonesFiltro.length > 0) {
         botonesFiltro.forEach(boton => {
-            // Evento click en cada botón
             boton.addEventListener('click', (e) => {
                 
-                // A) Estilos visuales de los botones
-                // quito la clase 'btn-dark' (activo) a todos y pongo 'btn-outline-dark'
+                // Estilos visuales de los botones
                 botonesFiltro.forEach(btn => {
                     btn.classList.remove('btn-dark');
                     btn.classList.add('btn-outline-dark');
                 });
-                // Le doy estilo de activo solo al botón clickeado
                 e.target.classList.remove('btn-outline-dark');
                 e.target.classList.add('btn-dark');
 
-                // B) Lógica de filtrado
-                const filtro = e.target.getAttribute('data-filtro'); // Lee si es "todas", "disponible" u "ocupada"
+                // Lógica de filtrado
+                const filtro = e.target.getAttribute('data-filtro');
 
                 tarjetasHabitacion.forEach(tarjeta => {
                     const estadoHabitacion = tarjeta.getAttribute('data-estado');
 
-                    // Lógica para mostrar/ocultar mediante DOM (display)
                     if (filtro === 'todas' || estadoHabitacion === filtro) {
-                        tarjeta.style.display = 'block'; // Mostrar
+                        tarjeta.style.display = 'block';
                     } else {
-                        tarjeta.style.display = 'none';  // Ocultar
+                        tarjeta.style.display = 'none';
                     }
                 });
             });
+        });
+    }
+
+    // B) Lógica para alternar el texto "Ver Detalles" / "Ocultar Detalles"
+    if (botonesDetallesHab.length > 0) {
+        botonesDetallesHab.forEach(btn => {
+            // Buscamos el elemento colapsable asociado (usando el data-bs-target del botón)
+            const targetId = btn.getAttribute('data-bs-target');
+            const collapseElement = document.querySelector(targetId);
+
+            if (collapseElement) {
+                // Evento cuando se muestra el detalle
+                collapseElement.addEventListener('shown.bs.collapse', () => {
+                    btn.textContent = 'Ocultar Detalles';
+                });
+                
+                // Evento cuando se oculta el detalle
+                collapseElement.addEventListener('hidden.bs.collapse', () => {
+                    btn.textContent = 'Ver Detalles';
+                });
+            }
         });
     }
 
@@ -184,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         estadoBadge.classList.add('bg-success');
                         estadoBadge.textContent = 'Solucionado';
 
-                        // Actualizar botón para permitir revertir
+                        // Actualizar botón para revertir
                         e.target.textContent = 'Marcar como pendiente';
                         e.target.classList.remove('btn-outline-success');
                         e.target.classList.add('btn-outline-danger');
@@ -278,102 +297,96 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="badge ${reserva.estado === 'Check-In' ? 'bg-success' : 'bg-primary'}">${reserva.estado}</span>
                         </div>
                         <p class="card-text text-muted small mb-1"><strong>Habitación:</strong> ${reserva.habitacion}</p>
-                        <p class="card-text text-muted small mb-1"><strong>Ingreso:</strong> ${reserva.ingreso}</p>
-                        <p class="card-text text-muted small mb-3"><strong>Salida:</strong> ${reserva.salida}</p>
-                        <button class="btn btn-sm btn-outline-danger btn-eliminar-reserva w-100 mt-auto fw-semibold" data-id="${reserva.id}">
-                            Cancelar Reserva
-                        </button>
+                        <div class="d-flex justify-content-between text-muted small mt-2">
+                            <span><i class="bi bi-box-arrow-in-right"></i> ${reserva.ingreso}</span>
+                            <span><i class="bi bi-box-arrow-right"></i> ${reserva.salida}</span>
+                        </div>
                     </div>
-                </div>`;
+                </div>
+            `;
             contenedorReservas.appendChild(col);
-        });
-
-        // Eventos para eliminar reserva
-        const botonesEliminar = contenedorReservas.querySelectorAll('.btn-eliminar-reserva');
-        botonesEliminar.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const idEliminar = Number(e.target.getAttribute('data-id'));
-                const reservasActuales = obtenerReservas();
-                const reservasFiltradas = reservasActuales.filter(r => r.id !== idEliminar);
-                localStorage.setItem('reservas_hotel', JSON.stringify(reservasFiltradas));
-                renderizarReservas();
-            });
         });
     };
 
-    // Alternar texto del botón (Crear Reserva / Ocultar Formulario)
+    // Cambio dinámico de botones de colapsables (Nueva Reserva)
     if (seccionNuevaReserva && btnNuevaReserva) {
         seccionNuevaReserva.addEventListener('shown.bs.collapse', () => {
-            btnNuevaReserva.textContent = 'Ocultar Formulario';
+            btnNuevaReserva.textContent = 'Cancelar / Ocultar';
+            btnNuevaReserva.classList.replace('btn-dark', 'btn-outline-danger');
         });
 
         seccionNuevaReserva.addEventListener('hidden.bs.collapse', () => {
-            btnNuevaReserva.textContent = 'Crear Reserva';
+            btnNuevaReserva.textContent = 'Crear Nueva Reserva';
+            btnNuevaReserva.classList.replace('btn-outline-danger', 'btn-dark');
+            if (formReserva) formReserva.reset(); // Limpiar al ocultar
         });
     }
 
-    // Alternar texto del botón (Ver Listado / Ocultar Listado)
+    // Cambio dinámico de botones de colapsables (Listado)
     if (seccionListadoReservas && btnListadoReservas) {
         seccionListadoReservas.addEventListener('shown.bs.collapse', () => {
             btnListadoReservas.textContent = 'Ocultar Listado';
-            renderizarReservas();
         });
 
         seccionListadoReservas.addEventListener('hidden.bs.collapse', () => {
-            btnListadoReservas.textContent = 'Ver Listado';
+            btnListadoReservas.textContent = 'Ver Listado de Reservas';
         });
     }
 
-    // Validación y guardado del formulario
+    // Lógica para guardar una nueva reserva
     if (formReserva) {
         formReserva.addEventListener('submit', (e) => {
-            e.preventDefault(); // Intercepta el envío del formulario
+            e.preventDefault();
 
-            const nombre = document.getElementById('nombre-huesped').value.trim();
-            const habitacion = document.getElementById('tipo-habitacion').value;
-            const ingreso = document.getElementById('fecha-ingreso').value;
-            const salida = document.getElementById('fecha-salida').value;
+            // 1. Obtener valores del formulario
+            const nombre = document.getElementById('clienteNombre').value;
+            const habitacionSelect = document.getElementById('habitacionSelect');
+            const habitacionTexto = habitacionSelect.options[habitacionSelect.selectedIndex].text;
+            const fechaIngreso = document.getElementById('fechaIngreso').value;
+            const fechaSalida = document.getElementById('fechaSalida').value;
 
-            // Validación: Verificar que ningún campo esté vacío
-            if (!nombre || !habitacion || !ingreso || !salida) {
-                if (alertaReserva) {
-                    alertaReserva.className = 'alert alert-danger mb-3';
-                    alertaReserva.textContent = 'Por favor, complete todos los campos obligatorios.';
-                }
+            // 2. Validación básica de fechas
+            if (new Date(fechaSalida) <= new Date(fechaIngreso)) {
+                alert("La fecha de salida debe ser posterior a la de ingreso.");
                 return;
             }
 
-            // Crear objeto de reserva
+            // 3. Crear el nuevo objeto reserva
             const nuevaReserva = {
                 id: Date.now(),
                 nombre: nombre,
-                habitacion: habitacion,
-                ingreso: ingreso,
-                salida: salida,
+                habitacion: habitacionTexto,
+                ingreso: fechaIngreso,
+                salida: fechaSalida,
                 estado: 'Confirmada'
             };
 
-            // Guardar en localStorage
+            // 4. Guardar en localStorage
             const reservas = obtenerReservas();
             reservas.push(nuevaReserva);
             localStorage.setItem('reservas_hotel', JSON.stringify(reservas));
 
-            // Mostrar mensaje de éxito
+            // 5. Mostrar feedback visual temporal
             if (alertaReserva) {
-                alertaReserva.className = 'alert alert-success mb-3';
-                alertaReserva.textContent = 'Reserva simulada con éxito.';
+                alertaReserva.style.display = 'block';
+                setTimeout(() => {
+                    alertaReserva.style.display = 'none';
+                }, 3000); // Se oculta a los 3 segundos
             }
 
-            // Resetear formulario
-            formReserva.reset();
-
-            // Actualizar el listado si está visible
+            // 6. Actualizar el listado en el DOM
             renderizarReservas();
+
+            // 7. Resetear formulario y cerrar panel
+            formReserva.reset();
+            const collapseInstancia = bootstrap.Collapse.getInstance(seccionNuevaReserva);
+            if(collapseInstancia) collapseInstancia.hide();
         });
     }
 
-    // Renderizado inicial al cargar la página si la sección está presente
+    // Inicializar renderizado si estamos en la página de reservas
     if (contenedorReservas) {
         renderizarReservas();
     }
+
 });
