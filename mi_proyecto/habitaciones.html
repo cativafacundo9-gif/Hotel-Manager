@@ -11,15 +11,67 @@
     
     <!-- CSS viejo --> 
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Header con Navbar Responsive de Bootstrap -->
-    <header class="bg-white border-bottom shadow-sm sticky-top">
+    <!-- Tipografías Premium de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos mínimos esenciales (5%) para tipografías y el fondo con efecto blur -->
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            background-color: #f8f9fa; 
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-gold {
+            color: #C4A47C !important;
+        }
+        .border-gold {
+            border-color: #C4A47C !important;
+        }
+
+        /* Fondo de pantalla Claro y Fresco con efecto Blur */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            filter: blur(12px) brightness(1.1);
+            z-index: -1;
+        }
+
+        /* Comportamiento específico para mantener el estilo visual de los filtros activos */
+        .btn-filtro:hover, 
+        .btn-filtro:focus, 
+        .btn-filtro:active,
+        .btn-filtro.active,
+        .btn-filtro.active.bg-white {
+            background-color: #212529 !important;
+            color: #ffffff !important;
+            border-color: #212529 !important;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header con Navbar Responsive de Bootstrap (Efecto Cristal) -->
+    <header class="border-bottom border-light shadow-sm sticky-top bg-white bg-opacity-75" style="backdrop-filter: blur(10px);">
         <nav class="navbar navbar-expand-lg navbar-light container py-3">
-            <!-- Logo -->
-            <a class="navbar-brand fs-4 fw-bold text-uppercase tracking-wide text-dark" href="index.html">
-                HotelAdmin <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
+            <!-- Logo con tipografía premium -->
+            <a class="navbar-brand fs-4 tracking-wide text-dark" href="index.html">
+                <span class="fw-light">Hotel</span><span class="font-serif text-gold fw-bold">Admin</span> <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
             </a>
             
             <!-- Botón Hamburguesa para celulares -->
@@ -41,17 +93,17 @@
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <!-- Hero: Centrado y Elegante -->
-        <section class="text-center pt-4 pb-4 mb-4 border-bottom">
-            <h1 class="h2 fw-bold text-dark">Módulo de Habitaciones</h1>
-            <p class="text-muted mb-0">Control y disponibilidad de habitaciones en tiempo real.</p>
+        <!-- Hero: Centrado, Elegante y con Contraste -->
+        <section class="text-white text-center p-4 p-md-5 rounded-3 shadow-lg mb-5 bg-dark bg-opacity-75" style="backdrop-filter: blur(5px);">
+            <h1 class="display-6 font-serif fw-normal mb-2">Módulo de <span class="fw-bold font-serif text-gold">Habitaciones</span></h1>
+            <p class="lead mb-0 text-white-50 fs-6 fw-light">Control y disponibilidad de habitaciones en tiempo real.</p>
         </section>
 
         <!-- Botones de filtro -->
         <div class="d-flex justify-content-center gap-2 mb-5">
-            <button class="btn btn-dark btn-filtro" data-filtro="todas">Todas</button>
-            <button class="btn btn-outline-dark btn-filtro" data-filtro="disponible">Disponibles</button>
-            <button class="btn btn-outline-dark btn-filtro" data-filtro="ocupada">Ocupadas</button>
+            <button class="btn btn-outline-dark bg-white btn-filtro shadow-sm" data-filtro="todas">Todas</button>
+            <button class="btn btn-outline-dark bg-white btn-filtro shadow-sm" data-filtro="disponible">Disponibles</button>
+            <button class="btn btn-outline-dark bg-white btn-filtro shadow-sm" data-filtro="ocupada">Ocupadas</button>
         </div>
 
         <!-- Grilla de Habitaciones -->
@@ -61,9 +113,9 @@
             <article class="col tarjeta-habitacion" data-estado="disponible">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Habitación 101 - Simple</h2>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Habitación 101 - Simple</h2>
                         <p class="card-text text-muted small mb-4">
-                            <span class="d-block mb-2">Estado: <span class="badge bg-success">Disponible</span></span>
+                            <span class="d-block mb-2">Estado: <span class="badge bg-success fw-normal">Disponible</span></span>
                             <span class="d-block">Limpieza: <span class="fw-bold text-dark">OK</span></span>
                         </p>
                         
@@ -74,7 +126,7 @@
 
                         <!-- Panel de detalles oculto -->
                         <div class="collapse mt-3" id="detalle-hab-101">
-                            <div class="p-3 bg-light rounded-3 border small">
+                            <div class="p-3 bg-light rounded-3 border border-light small shadow-sm">
                                 <ul class="list-unstyled mb-0 text-muted">
                                     <li class="mb-1"><strong>Capacidad:</strong> 1 persona</li>
                                     <li class="mb-1"><strong>Camas:</strong> 1 Individual</li>
@@ -92,10 +144,10 @@
             <article class="col tarjeta-habitacion" data-estado="ocupada">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Habitación 102 - Doble</h2>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Habitación 102 - Doble</h2>
                         <p class="card-text text-muted small mb-4">
-                            <span class="d-block mb-2">Estado: <span class="badge bg-danger">Ocupada</span></span>
-                            <span class="d-block">Limpieza: <span class="fw-bold text-warning">Pendiente</span></span>
+                            <span class="d-block mb-2">Estado: <span class="badge bg-danger fw-normal">Ocupada</span></span>
+                            <span class="d-block">Limpieza: <span class="fw-bold text-gold">Pendiente</span></span>
                         </p>
                         
                         <!-- Botón para desplegar detalles -->
@@ -105,7 +157,7 @@
 
                         <!-- Panel de detalles oculto -->
                         <div class="collapse mt-3" id="detalle-hab-102">
-                            <div class="p-3 bg-light rounded-3 border small">
+                            <div class="p-3 bg-light rounded-3 border border-light small shadow-sm">
                                 <ul class="list-unstyled mb-0 text-muted">
                                     <li class="mb-1"><strong>Capacidad:</strong> 2 personas</li>
                                     <li class="mb-1"><strong>Camas:</strong> 1 Matrimonial (Queen)</li>
@@ -123,9 +175,9 @@
             <article class="col tarjeta-habitacion" data-estado="disponible">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Habitación 201 - Suite</h2>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Habitación 201 - Suite</h2>
                         <p class="card-text text-muted small mb-4">
-                            <span class="d-block mb-2">Estado: <span class="badge bg-success">Disponible</span></span>
+                            <span class="d-block mb-2">Estado: <span class="badge bg-success fw-normal">Disponible</span></span>
                             <span class="d-block">Limpieza: <span class="fw-bold text-dark">OK</span></span>
                         </p>
                         
@@ -136,7 +188,7 @@
 
                         <!-- Panel de detalles oculto -->
                         <div class="collapse mt-3" id="detalle-hab-201">
-                            <div class="p-3 bg-light rounded-3 border small">
+                            <div class="p-3 bg-light rounded-3 border border-light small shadow-sm">
                                 <ul class="list-unstyled mb-0 text-muted">
                                     <li class="mb-1"><strong>Capacidad:</strong> 2 a 4 personas</li>
                                     <li class="mb-1"><strong>Camas:</strong> 1 King, 1 Sofá Cama</li>
@@ -153,10 +205,10 @@
         </section>
     </main>
 
-    <!-- Footer Corporativo -->
-    <footer class="bg-white border-top py-4 mt-auto">
+    <!-- Footer Claro y Cristalino -->
+    <footer class="py-4 mt-auto border-top border-light bg-white bg-opacity-75" style="backdrop-filter: blur(5px);">
         <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
+            <p class="mb-0 text-muted fw-light small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
         </div>
     </footer>
 
