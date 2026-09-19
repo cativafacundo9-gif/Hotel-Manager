@@ -11,36 +11,91 @@
     
     <!-- CSS viejo -->
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Header Minimalista y Limpio -->
-    <header class="bg-white border-bottom py-3 sticky-top shadow-sm">
+    <!-- Tipografías Premium de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos para el Fondo Claro, Tipografías y Color Oro -->
+    <style>
+        /* Aplicamos la fuente limpia a toda la página */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fuente elegante solo para los títulos y logos */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Color Champagne Gold personalizado (reemplaza al amarillo) */
+        .text-gold {
+            color: #C4A47C !important;
+        }
+        .border-gold {
+            border-color: #C4A47C !important;
+        }
+
+        /* Fondo de pantalla Claro y Fresco con efecto Blur */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            /* Imagen de hotel de lujo luminoso */
+            background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            /* Desenfocado y ligeramente aclarado */
+            filter: blur(12px) brightness(1.1);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+    <!-- Header Claro y Elegante -->
+    <header class="py-3 sticky-top shadow-sm border-bottom border-light bg-white bg-opacity-75" style="backdrop-filter: blur(10px);">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="text-dark">
-                <span class="fs-4 fw-bold text-uppercase tracking-wide">HotelAdmin</span>
-                <span class="text-secondary fw-light">| Panel</span>
+            <div class="d-flex align-items-center gap-2">
+                <!-- Marca con la nueva tipografía serif y el acento dorado -->
+                <span class="fs-4 tracking-wide text-dark">
+                    <span class="fw-light">Hotel</span><span class="font-serif text-gold fw-bold">Admin</span>
+                </span>
+                <span class="text-muted fw-light fs-6 d-none d-sm-inline ms-2">| Panel Ejecutivo</span>
             </div>
-            <span class="badge border border-secondary text-secondary rounded-pill fw-normal px-3 py-2">
+            <!-- Etiqueta de usuario con borde dorado -->
+            <span class="badge border border-gold text-dark rounded-pill fw-normal px-4 py-2" style="background-color: rgba(196, 164, 124, 0.1);">
                 Usuario: Admin
             </span>
+
         </div>
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <!-- Hero: Centrado y Elegante -->
-        <section class="text-center pt-4 pb-4 mb-5 border-bottom">
-            <h1 id="saludo-dashboard" class="h2 fw-bold text-dark">Panel de Control del Hotel</h1>
-            <p class="text-muted mb-3">Seleccione un módulo para gestionar las operaciones del hotel.</p>
+        
+        <!-- Hero: Estilo VIP con máximo contraste -->
+        <section class="text-white p-4 p-md-5 rounded-3 shadow-lg mb-5 d-md-flex justify-content-between align-items-center bg-dark bg-opacity-75" style="backdrop-filter: blur(5px);">
+            <div class="mb-4 mb-md-0">
+                <!-- Aplico la fuente elegante (font-serif) al saludo -->
+                <h1 id="saludo-dashboard" class="display-6 font-serif fw-normal mb-2">Panel de Control <span class="fw-bold font-serif text-gold">Hotelero</span></h1>
+                <p class="lead mb-0 text-white-50 fs-6 fw-light">Seleccione un módulo para gestionar las operaciones del hotel.</p>
+            </div>
             
-            <!-- Reloj en tiempo real -->
-            <div class="d-inline-flex align-items-center gap-2 bg-white border px-3 py-1 rounded-pill shadow-sm">
-                <span class="text-secondary small fw-semibold">Hora actual:</span>
-                <span id="reloj-digital" class="fw-bold text-dark font-monospace fs-6">00:00:00</span>
+            <!-- Reloj en tiempo real (Caja transparente elegante con texto dorado) -->
+            <div class="d-inline-flex align-items-center gap-3 border border-secondary px-4 py-3 rounded-3 bg-transparent">
+                <span class="text-white-50 small fw-bold text-uppercase" style="letter-spacing: 1px;">Hora actual:</span>
+                <span id="reloj-digital" class="fw-bold text-gold font-monospace fs-5">00:00:00</span>
             </div>
         </section>
 
-        <!-- Grilla de Tarjetas -->
+        <!-- Grilla de Tarjetas (Limpias, blancas, con títulos elegantes) -->
         <section class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             
             <!-- Tarjeta 1 -->
@@ -48,9 +103,10 @@
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <img src="img/habitaciones.jpg" class="card-img-top" alt="Gestión de habitaciones" style="height: 180px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-2">Habitaciones</h2>
-                        <p class="card-text text-muted small mb-4">Verifique el estado, control de limpieza y disponibilidad diaria.</p>
-                        <a href="habitaciones.html" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Gestionar</a>
+                        <span class="text-uppercase text-gold fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 1.5px;">Módulo 01</span>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Habitaciones</h2>
+                        <p class="card-text text-muted small mb-4 fw-light">Verifique el estado, control de limpieza y disponibilidad diaria.</p>
+                        <a href="habitaciones.html" class="btn btn-dark w-100 mt-auto text-uppercase py-2" style="font-size: 0.85rem; letter-spacing: 1px;">Gestionar</a>
                     </div>
                 </div>
             </article>
@@ -60,9 +116,10 @@
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <img src="img/reservas.jpg" class="card-img-top" alt="Gestión de reservas" style="height: 180px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-2">Reservas</h2>
-                        <p class="card-text text-muted small mb-4">Administre ingresos, salidas y nuevas reservas de clientes.</p>
-                        <a href="reservas.html" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Gestionar</a>
+                        <span class="text-uppercase text-gold fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 1.5px;">Módulo 02</span>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Reservas</h2>
+                        <p class="card-text text-muted small mb-4 fw-light">Administre ingresos, salidas y nuevas reservas de clientes.</p>
+                        <a href="reservas.html" class="btn btn-dark w-100 mt-auto text-uppercase py-2" style="font-size: 0.85rem; letter-spacing: 1px;">Gestionar</a>
                     </div>
                 </div>
             </article>
@@ -72,9 +129,10 @@
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <img src="img/huespedes.jpg" class="card-img-top" alt="Base de datos de huéspedes" style="height: 180px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-2">Huéspedes</h2>
-                        <p class="card-text text-muted small mb-4">Consulte el directorio corporativo e historial de estancias.</p>
-                        <a href="huespedes.html" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Gestionar</a>
+                        <span class="text-uppercase text-gold fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 1.5px;">Módulo 03</span>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Huéspedes</h2>
+                        <p class="card-text text-muted small mb-4 fw-light">Consulte el directorio corporativo e historial de estancias.</p>
+                        <a href="huespedes.html" class="btn btn-dark w-100 mt-auto text-uppercase py-2" style="font-size: 0.85rem; letter-spacing: 1px;">Gestionar</a>
                     </div>
                 </div>
             </article>
@@ -84,9 +142,10 @@
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
                     <img src="img/mantenimiento.jpg" class="card-img-top" alt="Panel de mantenimiento" style="height: 180px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-2">Mantenimiento</h2>
-                        <p class="card-text text-muted small mb-4">Control de reportes de fallas y cronograma de limpieza.</p>
-                        <a href="mantenimiento.html" class="btn btn-outline-dark w-100 mt-auto fw-semibold">Gestionar</a>
+                        <span class="text-uppercase text-gold fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 1.5px;">Módulo 04</span>
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Mantenimiento</h2>
+                        <p class="card-text text-muted small mb-4 fw-light">Control de reportes de fallas y cronograma de limpieza.</p>
+                        <a href="mantenimiento.html" class="btn btn-dark w-100 mt-auto text-uppercase py-2" style="font-size: 0.85rem; letter-spacing: 1px;">Gestionar</a>
                     </div>
                 </div>
             </article>
@@ -94,10 +153,10 @@
         </section>
     </main>
 
-    <!-- Footer Corporativo -->
-    <footer class="bg-white border-top py-4 mt-auto">
+    <!-- Footer Claro y Cristalino -->
+    <footer class="py-4 mt-auto border-top border-light bg-white bg-opacity-75" style="backdrop-filter: blur(5px);">
         <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
+            <p class="mb-0 small fw-light text-muted">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
         </div>
     </footer>
 
