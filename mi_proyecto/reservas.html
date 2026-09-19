@@ -11,15 +11,61 @@
     
     <!-- CSS viejo -->
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Header con Navbar Responsive de Bootstrap -->
-    <header class="bg-white border-bottom shadow-sm sticky-top">
+    <!-- Tipografías Premium de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos para el Fondo Claro, Tipografías y Color Oro -->
+    <style>
+        /* Aplicamos la fuente limpia a toda la página */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fuente elegante solo para los títulos y logos */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Color Champagne Gold personalizado (reemplaza al amarillo) */
+        .text-gold {
+            color: #C4A47C !important;
+        }
+        .border-gold {
+            border-color: #C4A47C !important;
+        }
+
+        /* Fondo de pantalla Claro y Fresco con efecto Blur */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            /* Imagen de hotel de lujo luminoso */
+            background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            /* Desenfocado y ligeramente aclarado */
+            filter: blur(12px) brightness(1.1);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header con Navbar Responsive de Bootstrap (Efecto Cristal) -->
+    <header class="border-bottom border-light shadow-sm sticky-top bg-white bg-opacity-75" style="backdrop-filter: blur(10px);">
         <nav class="navbar navbar-expand-lg navbar-light container py-3">
-            <!-- Logo -->
-            <a class="navbar-brand fs-4 fw-bold text-uppercase tracking-wide text-dark" href="index.html">
-                HotelAdmin <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
+            <!-- Logo con tipografía premium -->
+            <a class="navbar-brand fs-4 tracking-wide text-dark" href="index.html">
+                <span class="fw-light">Hotel</span><span class="font-serif text-gold fw-bold">Admin</span> <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
             </a>
             
             <!-- Botón Hamburguesa para celulares -->
@@ -42,10 +88,10 @@
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <!-- Hero: Centrado y Elegante -->
-        <section class="text-center pt-4 pb-4 mb-5 border-bottom">
-            <h1 class="h2 fw-bold text-dark">Módulo de Reservas</h1>
-            <p class="text-muted mb-0">Gestión de ingresos, salidas y reservas activas.</p>
+        <!-- Hero: Centrado, Elegante y con Contraste -->
+        <section class="text-white text-center p-4 p-md-5 rounded-3 shadow-lg mb-5 bg-dark bg-opacity-75" style="backdrop-filter: blur(5px);">
+            <h1 class="display-6 font-serif fw-normal mb-2">Módulo de <span class="fw-bold font-serif text-gold">Reservas</span></h1>
+            <p class="lead mb-0 text-white-50 fs-6 fw-light">Gestión de ingresos, salidas y reservas activas.</p>
         </section>
 
         <!-- Grilla de Reservas -->
@@ -54,10 +100,10 @@
             <!-- Tarjeta 1 -->
             <article class="col col-lg-5">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Nueva Reserva</h2>
+                    <div class="card-body p-4 d-flex flex-column text-center text-md-start">
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Nueva Reserva</h2>
                         <p class="card-text text-muted small mb-4">Cargar huésped, fechas y tipo de habitación.</p>
-                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-nueva-reserva" aria-expanded="false" aria-controls="seccion-nueva-reserva">
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-nueva-reserva" aria-expanded="false" aria-controls="seccion-nueva-reserva">
                             Crear Reserva
                         </button>
                     </div>
@@ -67,10 +113,10 @@
             <!-- Tarjeta 2 -->
             <article class="col col-lg-5">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Check-In / Check-Out</h2>
+                    <div class="card-body p-4 d-flex flex-column text-center text-md-start">
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Check-In / Check-Out</h2>
                         <p class="card-text text-muted small mb-4">Controlar ingresos y egresos del día.</p>
-                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-listado-reservas" aria-expanded="false" aria-controls="seccion-listado-reservas">
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-listado-reservas" aria-expanded="false" aria-controls="seccion-listado-reservas">
                             Ver Listado
                         </button>
                     </div>
@@ -80,28 +126,29 @@
         </section>
 
         <!-- Apartado Desplegable: Formulario Nueva Reserva -->
-        <section id="seccion-nueva-reserva" class="collapse mt-5 pt-4 border-top">
+        <section id="seccion-nueva-reserva" class="collapse mt-4 pt-4">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
-                    <div class="card border-0 shadow-sm bg-white p-4 rounded-3">
-                        <h3 class="h4 fw-bold text-dark mb-3 text-center">Registrar Nueva Reserva</h3>
+                    <!-- Formulario con fondo blanco para que sea muy legible y sombras suaves -->
+                    <div class="card border border-light shadow-lg bg-white p-4 p-md-5 rounded-3">
+                        <h3 class="h4 font-serif fw-bold text-dark mb-4 text-center">Registrar Nueva <span class="text-gold">Reserva</span></h3>
                         
                         <!-- Contenedor de Alerta de Éxito / Error -->
-                        <div id="alerta-reserva" class="alert alert-success d-none mb-3" role="alert">
+                        <div id="alerta-reserva" class="alert alert-success d-none mb-4" role="alert">
                             Reserva simulada con éxito.
                         </div>
 
                         <form id="form-reserva">
-                            <div class="mb-3">
-                                <!-- ID MODIFICADO AQUÍ -->
-                                <label for="clienteNombre" class="form-label fw-semibold small text-dark">Nombre Completo del Huésped</label>
-                                <input type="text" class="form-control" id="clienteNombre" placeholder="Ej: Carlos Tevez">
+                            <div class="mb-4">
+                               
+                                <label for="clienteNombre" class="form-label fw-semibold small text-dark text-uppercase" style="letter-spacing: 1px;">Nombre Completo del Huésped</label>
+                                <input type="text" class="form-control form-control-lg bg-light border-0" id="clienteNombre" placeholder="Ej: Carlos Tevez">
                             </div>
 
-                            <div class="mb-3">
-                                <!-- ID MODIFICADO AQUÍ -->
-                                <label for="habitacionSelect" class="form-label fw-semibold small text-dark">Tipo de Habitación</label>
-                                <select class="form-select" id="habitacionSelect">
+                            <div class="mb-4">
+                               
+                                <label for="habitacionSelect" class="form-label fw-semibold small text-dark text-uppercase" style="letter-spacing: 1px;">Tipo de Habitación</label>
+                                <select class="form-select form-select-lg bg-light border-0" id="habitacionSelect">
                                     <option value="" selected disabled>Seleccionar habitación...</option>
                                     <option value="101 - Individual Standard">101 - Individual Standard</option>
                                     <option value="102 - Suite Presidencial">102 - Suite Presidencial</option>
@@ -110,20 +157,20 @@
                                 </select>
                             </div>
 
-                            <div class="row g-2 mb-4">
+                            <div class="row g-3 mb-5">
                                 <div class="col-6">
-                                    <!-- ID MODIFICADO AQUÍ -->
-                                    <label for="fechaIngreso" class="form-label fw-semibold small text-dark">Fecha Check-In</label>
-                                    <input type="date" class="form-control" id="fechaIngreso">
+                                   
+                                    <label for="fechaIngreso" class="form-label fw-semibold small text-dark text-uppercase" style="letter-spacing: 1px;">Check-In</label>
+                                    <input type="date" class="form-control form-control-lg bg-light border-0" id="fechaIngreso">
                                 </div>
                                 <div class="col-6">
-                                    <!-- ID MODIFICADO AQUÍ -->
-                                    <label for="fechaSalida" class="form-label fw-semibold small text-dark">Fecha Check-Out</label>
-                                    <input type="date" class="form-control" id="fechaSalida">
+                                    
+                                    <label for="fechaSalida" class="form-label fw-semibold small text-dark text-uppercase" style="letter-spacing: 1px;">Check-Out</label>
+                                    <input type="date" class="form-control form-control-lg bg-light border-0" id="fechaSalida">
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-dark w-100 fw-semibold">Guardar Reserva</button>
+                            <button type="submit" class="btn btn-dark btn-lg w-100 fw-semibold text-uppercase shadow-sm" style="letter-spacing: 1px;">Guardar Reserva</button>
                         </form>
                     </div>
                 </div>
@@ -131,24 +178,26 @@
         </section>
 
         <!-- Apartado Desplegable: Listado de Reservas (CRUD) -->
-        <section id="seccion-listado-reservas" class="collapse mt-5 pt-4 border-top">
-            <div class="mb-4 text-center text-md-start">
-                <h3 class="h4 fw-bold text-dark mb-1">Listado de Reservas Activas</h3>
-                <p class="text-muted small">Administre ingresos, salidas y cancelaciones registradas en el sistema.</p>
+        <section id="seccion-listado-reservas" class="collapse mt-5 pt-4">
+            <!-- AQUÍ SE APLICÓ EL MARCO BLANCO -->
+            <div class="mb-4 text-center bg-white p-4 rounded-3 shadow-sm">
+                <h3 class="h3 font-serif fw-bold text-dark mb-2">Listado de Reservas <span class="text-gold">Activas</span></h3>
+                <p class="text-muted small fw-light mb-0">Administre ingresos, salidas y cancelaciones registradas en el sistema.</p>
             </div>
 
             <!-- Contenedor dinámico cargado con JS -->
-            <div id="contenedor-reservas" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+           
+            <div id="contenedor-reservas" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- Se puebla dinámicamente desde main.js con localStorage -->
             </div>
         </section>
 
     </main>
 
-    <!-- Footer Corporativo -->
-    <footer class="bg-white border-top py-4 mt-auto">
+    <!-- Footer Claro y Cristalino -->
+    <footer class="py-4 mt-auto border-top border-light bg-white bg-opacity-75" style="backdrop-filter: blur(5px);">
         <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
+            <p class="mb-0 text-muted fw-light small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
         </div>
     </footer>
 
