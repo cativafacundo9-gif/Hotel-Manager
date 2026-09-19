@@ -11,15 +11,61 @@
     
     <!-- CSS viejo -->
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Header con Navbar Responsive de Bootstrap -->
-    <header class="bg-white border-bottom shadow-sm sticky-top">
+    <!-- Tipografías Premium de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos para el Fondo Claro, Tipografías y Color Oro -->
+    <style>
+        /* Aplicamos la fuente limpia a toda la página */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fuente elegante solo para los títulos y logos */
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Color Champagne Gold personalizado (reemplaza al amarillo) */
+        .text-gold {
+            color: #C4A47C !important;
+        }
+        .border-gold {
+            border-color: #C4A47C !important;
+        }
+
+        /* Fondo de pantalla Claro y Fresco con efecto Blur */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            /* Imagen de hotel de lujo luminoso */
+            background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            /* Desenfocado y ligeramente aclarado */
+            filter: blur(12px) brightness(1.1);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header con Navbar Responsive de Bootstrap (Efecto Cristal) -->
+    <header class="border-bottom border-light shadow-sm sticky-top bg-white bg-opacity-75" style="backdrop-filter: blur(10px);">
         <nav class="navbar navbar-expand-lg navbar-light container py-3">
             <!-- Logo -->
-            <a class="navbar-brand fs-4 fw-bold text-uppercase tracking-wide text-dark" href="index.html">
-                HotelAdmin <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
+            <a class="navbar-brand fs-4 tracking-wide text-dark" href="index.html">
+                <span class="fw-light">Hotel</span><span class="font-serif text-gold fw-bold">Admin</span> <span class="text-secondary fw-light fs-6 text-lowercase">| Panel</span>
             </a>
             
             <!-- Botón Hamburguesa para celulares -->
@@ -42,10 +88,10 @@
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <!-- Hero: Centrado y Elegante -->
-        <section class="text-center pt-4 pb-4 mb-5 border-bottom">
-            <h1 class="h2 fw-bold text-dark">Módulo de Huéspedes</h1>
-            <p class="text-muted mb-0">Directorio e historial de clientes registrados.</p>
+        <!-- Hero: Centrado y Elegante con Contraste -->
+        <section class="text-white text-center p-4 p-md-5 rounded-3 shadow-lg mb-5 bg-dark bg-opacity-75" style="backdrop-filter: blur(5px);">
+            <h1 class="display-6 font-serif fw-normal mb-2">Módulo de <span class="fw-bold font-serif text-gold">Huéspedes</span></h1>
+            <p class="lead mb-0 text-white-50 fs-6 fw-light">Directorio e historial de clientes registrados.</p>
         </section>
 
         <!-- Grilla de Huéspedes -->
@@ -54,10 +100,10 @@
             <!-- Tarjeta 1 -->
             <article class="col col-lg-5">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Lista de Huéspedes</h2>
+                    <div class="card-body p-4 d-flex flex-column text-center text-md-start">
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Lista de Huéspedes</h2>
                         <p class="card-text text-muted small mb-4">Consultar datos de contacto y documentos.</p>
-                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-directorio" aria-expanded="false" aria-controls="seccion-directorio">
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-directorio" aria-expanded="false" aria-controls="seccion-directorio">
                             Ver Directorio
                         </button>
                     </div>
@@ -67,10 +113,10 @@
             <!-- Tarjeta 2 -->
             <article class="col col-lg-5">
                 <div class="card h-100 border-0 shadow-sm bg-white rounded-3">
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h5 fw-bold text-dark mb-3">Historial de Estancias</h2>
+                    <div class="card-body p-4 d-flex flex-column text-center text-md-start">
+                        <h2 class="h4 font-serif fw-bold text-dark mb-3">Historial de Estancias</h2>
                         <p class="card-text text-muted small mb-4">Registro de visitas anteriores y preferencias.</p>
-                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-historial" aria-expanded="false" aria-controls="seccion-historial">
+                        <button class="btn btn-outline-dark w-100 mt-auto fw-semibold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#seccion-historial" aria-expanded="false" aria-controls="seccion-historial">
                             Consultar
                         </button>
                     </div>
@@ -80,15 +126,15 @@
         </section>
 
         <!-- Apartado Desplegable: Directorio de Huéspedes con Buscador -->
-        <section id="seccion-directorio" class="collapse mt-5 pt-4 border-top">
-            <div class="mb-4 text-center text-md-start">
-                <h3 class="h4 fw-bold text-dark mb-1">Directorio de Huéspedes</h3>
-                <p class="text-muted small">Escriba un nombre para filtrar la lista en tiempo real.</p>
+        <section id="seccion-directorio" class="collapse mt-5 pt-4">
+            <div class="mb-4 text-center bg-white p-4 rounded-3 shadow-sm">
+                <h3 class="h3 font-serif fw-bold text-dark mb-2">Directorio de <span class="text-gold">Huéspedes</span></h3>
+                <p class="text-muted small fw-light mb-0">Escriba un nombre para filtrar la lista en tiempo real.</p>
             </div>
 
             <!-- Buscador en Tiempo Real -->
             <div class="mb-4">
-                <input type="text" id="buscador-huespedes" class="form-control form-control-lg border shadow-sm" placeholder="Buscar huésped por nombre...">
+                <input type="text" id="buscador-huespedes" class="form-control form-control-lg bg-white border-0 shadow-sm" placeholder="Buscar huésped por nombre...">
             </div>
 
             <!-- Grilla con datos de Huéspedes -->
@@ -98,7 +144,7 @@
                 <article class="col tarjeta-huesped">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark nombre-huesped mb-2">Juan Pérez</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark nombre-huesped mb-2">Juan Pérez</h4>
                             <p class="card-text text-muted small mb-1"><strong>DNI:</strong> 12.345.678</p>
                             <p class="card-text text-muted small mb-2"><strong>Habitación:</strong> 102 - Suite</p>
                             <span class="badge bg-success">Activo</span>
@@ -110,7 +156,7 @@
                 <article class="col tarjeta-huesped">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark nombre-huesped mb-2">María Gómez</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark nombre-huesped mb-2">María Gómez</h4>
                             <p class="card-text text-muted small mb-1"><strong>DNI:</strong> 87.654.321</p>
                             <p class="card-text text-muted small mb-2"><strong>Habitación:</strong> 204 - Doble</p>
                             <span class="badge bg-secondary">Finalizado</span>
@@ -122,7 +168,7 @@
                 <article class="col tarjeta-huesped">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark nombre-huesped mb-2">Carlos López</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark nombre-huesped mb-2">Carlos López</h4>
                             <p class="card-text text-muted small mb-1"><strong>DNI:</strong> 45.678.910</p>
                             <p class="card-text text-muted small mb-2"><strong>Habitación:</strong> 105 - Individual</p>
                             <span class="badge bg-success">Activo</span>
@@ -134,7 +180,7 @@
                 <article class="col tarjeta-huesped">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark nombre-huesped mb-2">Ana Martínez</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark nombre-huesped mb-2">Ana Martínez</h4>
                             <p class="card-text text-muted small mb-1"><strong>DNI:</strong> 33.221.100</p>
                             <p class="card-text text-muted small mb-2"><strong>Habitación:</strong> 301 - Deluxe</p>
                             <span class="badge bg-success">Activo</span>
@@ -146,10 +192,10 @@
         </section>
 
         <!-- Apartado Desplegable: Historial de Estancias -->
-        <section id="seccion-historial" class="collapse mt-5 pt-4 border-top">
-            <div class="mb-4 text-center text-md-start">
-                <h3 class="h4 fw-bold text-dark mb-1">Historial de Estancias</h3>
-                <p class="text-muted small">Registro histórico de visitas y estadías anteriores.</p>
+        <section id="seccion-historial" class="collapse mt-5 pt-4">
+            <div class="mb-4 text-center bg-white p-4 rounded-3 shadow-sm">
+                <h3 class="h3 font-serif fw-bold text-dark mb-2">Historial de <span class="text-gold">Estancias</span></h3>
+                <p class="text-muted small fw-light mb-0">Registro histórico de visitas y estadías anteriores.</p>
             </div>
 
             <!-- Grilla con datos de Historial -->
@@ -159,7 +205,7 @@
                 <article class="col">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark mb-2">Juan Pérez</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark mb-2">Juan Pérez</h4>
                             <p class="card-text text-muted small mb-1"><strong>Habitación:</strong> 102 - Suite</p>
                             <p class="card-text text-muted small mb-1"><strong>Fechas:</strong> 10/01/2026 - 15/01/2026</p>
                             <p class="card-text text-muted small mb-2"><strong>Preferencia:</strong> Piso alto, cama King</p>
@@ -172,7 +218,7 @@
                 <article class="col">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark mb-2">María Gómez</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark mb-2">María Gómez</h4>
                             <p class="card-text text-muted small mb-1"><strong>Habitación:</strong> 204 - Doble</p>
                             <p class="card-text text-muted small mb-1"><strong>Fechas:</strong> 01/02/2026 - 05/02/2026</p>
                             <p class="card-text text-muted small mb-2"><strong>Preferencia:</strong> Desayuno incluido</p>
@@ -185,7 +231,7 @@
                 <article class="col">
                     <div class="card h-100 border-0 shadow-sm bg-white rounded-3 p-3">
                         <div class="card-body">
-                            <h4 class="h6 fw-bold text-dark mb-2">Carlos López</h4>
+                            <h4 class="h6 font-serif fw-bold text-dark mb-2">Carlos López</h4>
                             <p class="card-text text-muted small mb-1"><strong>Habitación:</strong> 105 - Individual</p>
                             <p class="card-text text-muted small mb-1"><strong>Fechas:</strong> 20/02/2026 - 22/02/2026</p>
                             <p class="card-text text-muted small mb-2"><strong>Preferencia:</strong> Check-in tardío</p>
@@ -199,9 +245,9 @@
     </main>
 
     <!-- Footer Corporativo -->
-    <footer class="bg-white border-top py-4 mt-auto">
+    <footer class="py-4 mt-auto border-top border-light bg-white bg-opacity-75" style="backdrop-filter: blur(5px);">
         <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
+            <p class="mb-0 text-muted fw-light small">&copy; 2026 HotelAdmin. Panel de administración reservado.</p>
         </div>
     </footer>
 
